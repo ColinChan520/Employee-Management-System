@@ -12,9 +12,9 @@ app.use(cors()); // This will enable CORS for all routes
 
 app.use(bodyParser.json());
 
-// 处理跨域请求问题（CORS）
+
 app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', '*'); // 允许任何源
+  res.header('Access-Control-Allow-Origin', '*'); 
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
   if (req.method === 'OPTIONS') {
     res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE');
@@ -23,37 +23,45 @@ app.use((req, res, next) => {
   next();
 });
 
+
+async function fetchData(sql, params) {
+  try {
+    const [results] = await connection.query(sql, params);
+    console.log(results);
+    return results;
+  } catch (error) {
+    console.error('Error:', error);
+  }
+}
+
+
 // POST Request Login Interface
-app.post('/auth/adminlogin', (req, res) => {
+app.post('/auth/adminlogin', async(req, res) => {
   const { email, password } = req.body;
   // Used for example, in practice you should move the login logic and validation here
   console.log(`Email: ${email}, Password: ${password}`);
 
-  connection.connect(err => {
-    if (err) {
-      return console.error('error connecting: ' + err.stack);
-    }
-    console.log('connected as id ' + connection.threadId);
-  });
-  
-  // 执行 SQL 查询
-  connection.query('SELECT * FROM tempTable', (error, results, fields) => {
-    if (error) throw error;
-  
-    // 输出查询结果
-    console.log(results);
-  });
-  
-  // 关闭连接
-  connection.end();
-  
-  if (email === 'colinchan233@gmail.com' && password === 'chr200049') {
-    res.status(200).json({ message: 'Successfully Log In' });
-  } else {
-    res.status(401).json({ message: 'Authentication failed with an incorrect username or password.' });
+  try {
+    const result = await fetchData('SELECT * FROM users WHERE email = ? AND password = ? AND isAdmin = 1', 
+    [email, password]);
+    if (result.length > 0) {
+        res.status(200).json({ message: 'Successfully Log In' });
+      } else {
+        res.status(401).json({ message: 'Authentication failed with an incorrect username or password.' });
+      }
+  } catch (error) {
+    console.error('Error:', error);
   }
 });
 
 app.listen(3000, () => {
     console.log('Server is running on port 3000');
 })
+
+// Graceful shutdown
+process.on('SIGINT', () => {
+  connection.end().then(() => {
+    console.log('Pool was closed.');
+    process.exit(0);
+  });
+});
