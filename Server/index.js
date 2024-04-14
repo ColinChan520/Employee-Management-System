@@ -1,9 +1,11 @@
 import express from 'express';
 import cors from 'cors';
 import bodyParser from 'body-parser';
+import connection from './db.js';
 
 // const express = require('express');
 // const cors = require('cors');
+// const connection = require('./db');
 const app = express();
 
 app.use(cors()); // This will enable CORS for all routes
@@ -26,6 +28,24 @@ app.post('/auth/adminlogin', (req, res) => {
   const { email, password } = req.body;
   // Used for example, in practice you should move the login logic and validation here
   console.log(`Email: ${email}, Password: ${password}`);
+
+  connection.connect(err => {
+    if (err) {
+      return console.error('error connecting: ' + err.stack);
+    }
+    console.log('connected as id ' + connection.threadId);
+  });
+  
+  // 执行 SQL 查询
+  connection.query('SELECT * FROM tempTable', (error, results, fields) => {
+    if (error) throw error;
+  
+    // 输出查询结果
+    console.log(results);
+  });
+  
+  // 关闭连接
+  connection.end();
   
   if (email === 'colinchan233@gmail.com' && password === 'chr200049') {
     res.status(200).json({ message: 'Successfully Log In' });
