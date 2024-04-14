@@ -28,9 +28,9 @@ app.post('/auth/adminlogin', (req, res) => {
   console.log(`Email: ${email}, Password: ${password}`);
   
   if (email === 'colinchan233@gmail.com' && password === 'chr200049') {
-    res.status(200).json({ message: '登录成功！' });
+    res.status(200).json({ message: 'Successfully Log In' });
   } else {
-    res.status(401).json({ message: '认证失败，用户名或密码错误。' });
+    res.status(401).json({ message: 'Authentication failed with an incorrect username or password.' });
   }
 });
 

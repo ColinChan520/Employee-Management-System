@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import './style.css'
 import axio from 'axios'
 import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
 
 const Login = () => {
 
@@ -25,7 +26,9 @@ const Login = () => {
     <div className = "d-flex justify-content-center align-items-center vh-100 loginPage">
         <div className = "p-3 rounded w-25 border loginForm">
             <h2>Login Page</h2>
-            <form onSubmit={handleSunmit}>
+
+                <br/>
+
                 <div className='mb-3'>
                 <TextField
                     label="Email" 
@@ -96,12 +99,11 @@ const Login = () => {
                       fullWidth
                     />
                 </div>
-                <button className = "btn btn-success w-100 rounded-0 mb-2">Log in</button>
-                <div className='mb-1'>
-                    <input type = "checkbox" name="tick" id="tick" className='me-2'/>
-                    <label htmlFor = "password">You are agree with terms & conditions</label>
+
+                <div style={{ textAlign: 'right' }}>
+                <Button variant="contained" onClick={handleSunmit}>Log in</Button>
                 </div>
-            </form>
+
         </div>
     </div>
   )
