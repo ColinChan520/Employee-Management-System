@@ -32,6 +32,32 @@ const Login = () => {
                     variant="outlined" 
                     value={email} 
                     onChange={(event) => setEmail(event.target.value)} 
+                    sx={{
+                        input: {
+                            color: 'white', 
+                          },
+                          label: {
+                            color: 'white', 
+                          },
+                          '& label.Mui-focused': {
+                            color: 'white', 
+                          },
+                        '& label.Mui-focused': {
+                          color: 'white',
+                        },
+                        '& .MuiOutlinedInput-root': {
+                          '& fieldset': {
+                            borderColor: 'white',
+                          },
+                          '&:hover fieldset': {
+                            borderColor: 'white',
+                          },
+                          '&.Mui-focused fieldset': {
+                            borderColor: 'white',
+                          },
+                        }
+                      }}
+                      fullWidth
                     />
                 </div>
                 
@@ -42,6 +68,32 @@ const Login = () => {
                     type='password'
                     value={password} 
                     onChange={(event) => setPassword(event.target.value)} 
+                    sx={{
+                        input: {
+                            color: 'white',
+                          },
+                          label: {
+                            color: 'white', 
+                          },
+                          '& label.Mui-focused': {
+                            color: 'white', 
+                          },
+                        '& label.Mui-focused': {
+                          color: 'white',
+                        },
+                        '& .MuiOutlinedInput-root': {
+                          '& fieldset': {
+                            borderColor: 'white',
+                          },
+                          '&:hover fieldset': {
+                            borderColor: 'white',
+                          },
+                          '&.Mui-focused fieldset': {
+                            borderColor: 'white',
+                          },
+                        }
+                      }}
+                      fullWidth
                     />
                 </div>
                 <button className = "btn btn-success w-100 rounded-0 mb-2">Log in</button>
