@@ -1,11 +1,12 @@
 import './App.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
-import Login from './Components/Login'
+import SideBar from './Components/SideBar'
+import NaviBar from './Components/NaviBar'
 
 function App() {
   
   return (
-    <><Login /></>
+    <><SideBar /></>
   )
 }
 
