@@ -6,7 +6,7 @@ import NaviBar from './Components/NaviBar'
 function App() {
   
   return (
-    <><SideBar /></>
+    <><NaviBar /></>
   )
 }
 

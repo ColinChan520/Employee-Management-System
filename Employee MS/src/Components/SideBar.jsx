@@ -16,8 +16,8 @@ function Sidebar() {
         width: 240,
         '& .MuiDrawer-paper': {
           width: 240,
-          backgroundColor: 'black', // 设置 Drawer 的背景色
-          color: 'white', // 设置 Drawer 内部文字的颜色
+          backgroundColor: 'black', 
+          color: 'white', 
         },
       }}
     >
