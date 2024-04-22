@@ -1,8 +1,9 @@
 import React from 'react';
-import { AppBar, Toolbar, Typography } from '@mui/material';
+import { AppBar, Toolbar, Typography, Box } from '@mui/material';
 
 function TopBar() {
   return (
+<Box sx={{ width: '80%', ml: 'auto' }}>
     <AppBar position="static" sx={{
       backgroundColor: 'white', 
       color: 'black', 
@@ -18,6 +19,7 @@ function TopBar() {
         </Typography>
       </Toolbar>
     </AppBar>
+    </Box>
   );
 }
 

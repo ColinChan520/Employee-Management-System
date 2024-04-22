@@ -13,9 +13,11 @@ function Sidebar() {
       variant="permanent" 
       anchor="left"        
       sx={{
-        width: 240,
+        width: '20%',
+        flexShrink: 0,
         '& .MuiDrawer-paper': {
-          width: 240,
+          width: '20%',
+          boxSizing: 'border-box',
           backgroundColor: 'black', 
           color: 'white', 
         },
